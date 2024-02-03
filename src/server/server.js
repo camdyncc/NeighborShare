@@ -15,7 +15,7 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect('mongodb+srv://camdyncoblentz:mongoDB060300@cluster0.th4c6ux.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
