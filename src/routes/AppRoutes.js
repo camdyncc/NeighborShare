@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import FeedPage from '../view/FeedPage';
 import LoginPage from '../view/LoginPage';
-import CreateAccount from '../compviewonents/CreateAccount';
+import CreateAccount from '../view/CreateAccount';
 import ProfilePage from '../view/ProfilePage';
 import NewPost from '../view/NewPost';
 import UserPostsPage from '../view/UserPostPage';
