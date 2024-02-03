@@ -9,14 +9,13 @@ const FeedPage = () => {
   const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
   const [currentPostId, setCurrentPostId] = useState('');
   const [rating, setRating] = useState(5);
+  const [inviteUsername, setInviteUsername] = useState(''); // State for the username input
   const { authState } = useAuth();
   const navigate = useNavigate();
   const auth = useAuth();
-
   useEffect(() => {
     const fetchPosts = async () => {
       if (!authState.userId) return;
-
       try {
         const response = await axios.get(`http://localhost:5000/user-neighborhoods/${authState.userId}`);
         const neighborhoodId = response.data?._id;
@@ -26,9 +25,24 @@ const FeedPage = () => {
         console.error('Failed to fetch posts:', error);
       }
     };
-
     fetchPosts();
   }, [authState.userId]);
+
+  const handleInviteUsers = async () => {
+    // Assuming you have a neighborhoodId in your authState or some way to get the current neighborhood
+    const neighborhoodId = 'YOUR_NEIGHBORHOOD_ID_HERE'; // Replace with actual neighborhoodId logic
+    try {
+      await axios.post('http://localhost:5000/invite-user-to-neighborhood', {
+        username: inviteUsername,
+        neighborhoodId,
+      });
+      alert('Invitation sent successfully!');
+      setInviteUsername(''); // Reset input after sending the invite
+    } catch (error) {
+      console.error('Error sending invitation:', error);
+      alert('Failed to send invitation.');
+    }
+  };
 
   const showRatingModal = (postId) => {
     setCurrentPostId(postId);
@@ -43,7 +57,6 @@ const FeedPage = () => {
       });
       setIsRatingModalOpen(false);
       alert('Request fulfilled successfully!');
-      // Optionally refresh posts or update UI accordingly
     } catch (error) {
       console.error('Failed to fulfill request:', error);
       alert('Failed to fulfill request.');
@@ -59,13 +72,21 @@ const FeedPage = () => {
     <div className="feed-page">
       <nav className="navbar">
         <Link to="/" className="logo">NeighborShare</Link>
-          <div className="nav-links">
-            <Link to="/new-post" className="nav-item">New Post</Link>
-            <Link to="/user-post-page" className="nav-item">Your Post</Link>
-            <Link to="/create-neighborhood" className="nav-item">New Neighborhood</Link>
-            <Link to="/profile" className="nav-item">Profile</Link>
-            <button onClick={handleLogout} className="nav-item logout">Logout</button>
-          </div>
+        <div className="nav-links">
+          <Link to="/new-post" className="nav-item">New Post</Link>
+          <Link to="/user-post-page" className="nav-item">Your Post</Link>
+          <Link to="/create-neighborhood" className="nav-item">New Neighborhood</Link>
+          <Link to="/profile" className="nav-item">Profile</Link>
+          <input
+            type="text"
+            placeholder="Invite username"
+            value={inviteUsername}
+            onChange={(e) => setInviteUsername(e.target.value)}
+            className="invite-input"
+          />
+          <button onClick={handleInviteUsers} className="nav-item">Invite</button>
+          <button onClick={handleLogout} className="nav-item logout">Logout</button>
+        </div>
       </nav>
       <main className="feed">
         {posts.length > 0 ? (

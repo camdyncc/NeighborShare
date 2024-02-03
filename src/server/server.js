@@ -54,23 +54,30 @@ const NeighborhoodSchema = new mongoose.Schema({
 });
 
 // Example route for adding a user to a neighborhood
-app.post('/add-user-to-neighborhood', async (req, res) => {
-  const { userId, neighborhoodId } = req.body;
+app.post('/add-user-to-neighborhood-by-username', async (req, res) => {
+  const { username, neighborhoodId } = req.body; // Expecting a username now
 
   try {
+    // Find the user by username
+    const user = await User.findOne({ username: username });
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    // Find the neighborhood and add the user to it
     const neighborhood = await Neighborhood.findById(neighborhoodId);
     if (!neighborhood) {
       return res.status(404).send('Neighborhood not found');
     }
-    
+
     // Check if user is already in the neighborhood
-    if (!neighborhood.users.includes(userId)) {
-      neighborhood.users.push(userId); // Add the user ID to the array
+    if (!neighborhood.users.includes(user._id)) {
+      neighborhood.users.push(user._id); // Add the user's ID to the neighborhood
       await neighborhood.save();
     }
 
     // Optionally, update the user to include this neighborhood in their list of neighborhoods
-    await User.findByIdAndUpdate(userId, { $addToSet: { neighborhood: neighborhoodId } });
+    await User.findByIdAndUpdate(user._id, { $addToSet: { neighborhood: neighborhoodId } });
 
     res.status(200).send('User added to neighborhood successfully');
   } catch (error) {
@@ -130,7 +137,7 @@ app.post('/fulfill-post/:postId', async (req, res) => {
       return res.status(404).send('User not found.');
     }
 
-    // Simulated rating update logic (you'll need to adjust based on your rating system)
+    // Simulated rating update logic 
     const newRating = ((creator.rating || 0) + rating) / 2; // Simplified rating calculation
     creator.rating = newRating;
     fulfiller.credits += 1; // Issue credit to fulfiller
@@ -146,7 +153,7 @@ app.post('/fulfill-post/:postId', async (req, res) => {
   }
 });
 
-// Additional routes (create-post, posts, user-posts, etc.) remain unchanged
+
 
 // Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
