@@ -1,0 +1,74 @@
+.login-container {
+    width: 100%;
+    max-width: 340px;
+    background-color: white;
+    margin: 80px auto;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    color: #333;
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #32CD32; /* Lime Green */
+    font-weight: 600;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-container {
+    margin-bottom: 20px;
+  }
+  
+  .input-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .input-container input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  
+  .submit-container {
+    margin-top: 25px;
+  }
+  
+  .login-button {
+    padding: 12px 15px;
+    width: 100%;
+    background-color: #32CD32; /* Lime Green */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .login-button:hover {
+    background-color: #28a745; /* Darker Green */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .create-account-link {
+    display: block;
+    margin-top: 15px;
+    background-color: #f44336; /* Red for contrast */
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+  }

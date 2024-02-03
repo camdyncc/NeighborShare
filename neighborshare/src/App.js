@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import AppRoutes from './routes/AppRoutes'; // Adjust the import path based on your project structure
 
-function App() {
+const App = () => {
+  const [posts, setPosts] = useState([]);
+  const [userInfo, setUserInfo] = useState({username: '', password: '', name: '', age: '', address: '' });
+
+  const addNewPost = (newPost) => {
+    setPosts((prevPosts) => [...prevPosts, newPost]);
+  };
+
+  const getUserInfo = () => {
+    return userInfo;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppRoutes
+      posts={posts}
+      addNewPost={addNewPost}
+      userInfo={userInfo}
+      getUserInfo={getUserInfo}
+      setUserInfo={setUserInfo}
+    />
   );
-}
+};
 
 export default App;
