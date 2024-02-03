@@ -72,6 +72,26 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// Create new post
+app.post('/create-post', async (req, res) => {
+  try {
+    const { postName, postType, serviceOrTool, neededBy, userId, neighborhood } = req.body;
+    const newPost = new Post({
+      postName,
+      postType,
+      serviceOrTool,
+      neededBy,
+      userId,
+      neighborhood
+    });
+
+    await newPost.save();
+    res.status(201).send('Post created successfully');
+  } catch (error) {
+    console.error(error);
+    res.status(400).send('Failed to create post');
+  }
+});
 
 // Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

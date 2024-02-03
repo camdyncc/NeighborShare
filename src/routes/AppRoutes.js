@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import FeedPage from '../view/FeedPage';
 import LoginPage from '../view/LoginPage';
 import CreateAccount from '../view/CreateAccount';
+import NewPost from '../view/NewPost';
 
 import { AuthProvider } from '../view/AuthContext'; 
 
@@ -15,6 +16,7 @@ const AppRoutes = ({ posts, addNewPost, userInfo, getUserInfo, setUserInfo }) =>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/create-account" element={<CreateAccount />} />
                 <Route path="/feed" element={<FeedPage posts={posts} />} />
+                <Route path="/new-post" element={<NewPost onNewPost={addNewPost} />} />
             </Routes>
         </Router>
     </AuthProvider>
