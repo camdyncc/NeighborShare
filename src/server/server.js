@@ -53,6 +53,33 @@ const NeighborhoodSchema = new mongoose.Schema({
   users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] // This now expects an array of User IDs
 });
 
+// Example route for adding a user to a neighborhood
+app.post('/add-user-to-neighborhood', async (req, res) => {
+  const { userId, neighborhoodId } = req.body;
+
+  try {
+    const neighborhood = await Neighborhood.findById(neighborhoodId);
+    if (!neighborhood) {
+      return res.status(404).send('Neighborhood not found');
+    }
+    
+    // Check if user is already in the neighborhood
+    if (!neighborhood.users.includes(userId)) {
+      neighborhood.users.push(userId); // Add the user ID to the array
+      await neighborhood.save();
+    }
+
+    // Optionally, update the user to include this neighborhood in their list of neighborhoods
+    await User.findByIdAndUpdate(userId, { $addToSet: { neighborhood: neighborhoodId } });
+
+    res.status(200).send('User added to neighborhood successfully');
+  } catch (error) {
+    console.error('Failed to add user to neighborhood:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
 // Account creation route
 app.post('/create-account', async (req, res) => {
   const { username, password, firstName, lastName, age, address } = req.body;
