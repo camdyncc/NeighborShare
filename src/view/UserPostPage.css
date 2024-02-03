@@ -1,0 +1,42 @@
+.user-posts-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .post-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post-item h2 {
+    margin-top: 0;
+  }
+  
+  .actions {
+    margin-top: 20px;
+  }
+  
+  .edit-btn, .delete-btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  .edit-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  
+  .delete-btn {
+    background-color: #f44336; /* Red */
+    color: white;
+  }
+  
+
+  
