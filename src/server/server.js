@@ -29,13 +29,31 @@ const User = mongoose.model('User', new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   // Change to array of nighborhoods
+  neighborhood: { type: mongoose.Schema.Types.ObjectId, ref: 'Neighborhood' },
   firstName: String,
   lastName: String,
   age: Number,
   address: String,
 }));
 
+// Post model
+const Post = mongoose.model('Post', new mongoose.Schema({
+  postName: String,
+  postType: String,
+  serviceOrTool: String,
+  neededBy: Date,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  neighborhood: { type: mongoose.Schema.Types.ObjectId, ref: 'Neighborhood', required: true },
+}));
 
+// Neighborhood model
+const NeighborhoodSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  administrator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  users: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+});
+
+const Neighborhood = mongoose.model('Neighborhood', NeighborhoodSchema);
 
 
 
@@ -72,6 +90,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
+
 // Create new post
 app.post('/create-post', async (req, res) => {
   try {
@@ -92,6 +111,146 @@ app.post('/create-post', async (req, res) => {
     res.status(400).send('Failed to create post');
   }
 });
+
+// Get posts for feed page
+app.get('/posts', async (req, res) => {
+  const { neighborhoodId } = req.query;
+
+  try {
+    let query = {};
+    if (neighborhoodId) {
+      query.neighborhood = neighborhoodId; // Filter by neighborhoodId if provided
+    }
+
+    const posts = await Post.find(query).populate('userId', 'firstName lastName');
+    res.status(200).json(posts);
+  } catch (error) {
+    console.error('Failed to get posts:', error);
+    res.status(500).send('Failed to get posts');
+  }
+});
+
+
+
+// Get a given users post
+app.get('/user-posts/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    console.log("User id: " + userId);
+    const posts = await Post.find({ userId });
+    res.json(posts);
+  } catch (error) {
+    console.error('Failed to get user posts:', error);
+    res.status(500).json({ error: 'Failed to get user posts' });
+  }
+});
+
+// Get user for profile data
+app.get('/profile/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    console.log("User id profile: " + userId);
+    const user = await User.findById(userId);
+    if (!user) {
+      // If the user does not exist
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Failed to get user posts:', error);
+    res.status(500).json({ error: 'Failed to get user posts' });
+  }
+});
+
+// Update user info after edit
+app.put('/profile/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { firstName, lastName, age, address } = req.body;
+
+    // Find the user by userId and update their data
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { firstName, lastName, age, address },
+      { new: true } 
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error('Failed to update user data:', error);
+    res.status(500).json({ error: 'Failed to update user data' });
+  }
+});
+
+
+// Delete post
+app.delete('/posts/:postId', async (req, res) => {
+  try {
+    const { postId } = req.params;
+    await Post.findByIdAndDelete(postId);
+    res.send('Post deleted successfully');
+  } catch (error) {
+    res.status(500).send('Failed to delete post');
+  }
+});
+
+// Update post
+app.get('/posts/:postId', async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+    res.json(post);
+  } catch (error) {
+    console.error('Failed to get the post:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Create new neighbohood
+// User who created it is the admin
+app.post('/create-neighborhood', async (req, res) => {
+  try {
+    const { name, userId } = req.body;
+    const newNeighborhood = new Neighborhood({
+      name,
+      administrator: userId,
+      users: [userId] 
+    });
+    await newNeighborhood.save();
+
+    await User.findByIdAndUpdate(userId, { neighborhood: newNeighborhood._id });
+    res.status(201).json(newNeighborhood);
+  } catch (error) {
+    console.error('Failed to create neighborhood:', error);
+    res.status(400).send('Failed to create neighborhood');
+  }
+});
+
+// Get users neighborhoods
+app.get('/user-neighborhoods/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const user = await User.findById(userId).populate('neighborhood');
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+    // Assuming a user can belong to multiple neighborhoods, or adjust as necessary
+    res.json(user.neighborhood);
+  } catch (error) {
+    console.error('Failed to get neighborhoods for user:', error);
+    res.status(500).send('Server error');
+  }
+});
+
+
+
 
 // Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
