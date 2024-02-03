@@ -5,7 +5,7 @@ import LoginPage from '../view/LoginPage';
 import CreateAccount from '../view/CreateAccount';
 import NewPost from '../view/NewPost';
 
-import { AuthProvider } from '../view/AuthContext'; 
+import { AuthProvider } from '../components/AuthContext'; 
 
 // Props can be passed down here if necessary
 const AppRoutes = ({ posts, addNewPost, userInfo, getUserInfo, setUserInfo }) => {
