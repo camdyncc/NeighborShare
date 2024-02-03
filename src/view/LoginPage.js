@@ -22,6 +22,8 @@ function LoginPage() {
   };
 
   return (
+    
+  <div className="login-page-background">
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit} className="login-form">
@@ -34,6 +36,7 @@ function LoginPage() {
             required
           />
         </div>
+        
         <div className="input-container">
           <label>Password:</label>
           <input
@@ -49,6 +52,8 @@ function LoginPage() {
         <Link to="/create-account" className="create-account-link">Create an Account</Link>
       </form>
     </div>
+  </div>
+ 
   );
 }
 
