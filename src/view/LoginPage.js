@@ -103,7 +103,7 @@ export default function LoginPage() {
             >
               Sign In
             </Button>
-            <Link href="#" variant="body2">
+            <Link href="/create-account">
               {"Don't have an account? Sign Up"}
             </Link>
           </Box>
