@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';  // Import Link
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import './CreateNeighborhood.css';
@@ -14,10 +14,10 @@ const CreateNeighborhood = () => {
     try {
       await axios.post('http://localhost:5000/create-neighborhood', {
         name,
-        userId: authState.userId, 
+        userId: authState.userId,
       });
       alert('Neighborhood created successfully!');
-      navigate('/feed'); 
+      navigate('/feed');
     } catch (error) {
       console.error('Failed to create neighborhood:', error);
       alert('Failed to create the neighborhood.');
@@ -26,20 +26,30 @@ const CreateNeighborhood = () => {
 
   return (
     <div className="create-neighborhood-container">
-      <h1>Create New Neighborhood</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Neighborhood Name:</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="submit-button">Create Neighborhood</button>
-      </form>
+      <div className="back-button-container">
+        <Link to="/feed" className="back-button">&#8592; Back</Link> {/* Back button using Link */}
+      </div>
+      <div className="form-container">
+        <h1>Create New Neighborhood</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name"></label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Neighborhood Name" // Placeholder text
+              required
+            />
+          </div>
+
+          <button type="submit" className="submit-button">
+            Create Neighborhood
+          </button>
+
+        </form>
+      </div>
     </div>
   );
 };

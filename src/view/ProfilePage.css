@@ -1,44 +1,43 @@
 
 .profile-page form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Input fields */
-  .profile-page input[type="text"],
-  .profile-page input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-bottom: 10px;
-  }
-  
-  .profile-page input:focus {
-    outline: none;
-    border-color: limegreen;
-  }
-  
-  /* Labels */
-  .profile-page label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  /* Button */
-  .profile-page button[type="submit"] {
-    background-color: limegreen;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .profile-page button[type="submit"]:hover {
-    background-color: #59d959;
-  }
-  
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Input fields */
+.profile-page input[type="text"],
+.profile-page input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.profile-page input:focus {
+  outline: none;
+  border-color: limegreen;
+}
+
+/* Labels */
+.profile-page label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Button */
+.profile-page button[type="submit"] {
+  background-color: limegreen;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-page button[type="submit"]:hover {
+  background-color: #59d959;
+}
