@@ -10,18 +10,18 @@
   text-align: center;
   outline: 2px solid #636363;
   opacity: .9;
-  position: absolute; /* Make the container positioned absolutely */
-  top: 35%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Offset the container by half its width and height */
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
 }
   
   .login-page-background {
-    background-image: url('../../src/Images/BACKGROUND_LOGIN.png'); /* Adjust the path as necessary */
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the image in the container */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    min-height: 100vh; /* Ensure it covers the full viewport height */
+    background-image: url('../../src/Images/BACKGROUND_LOGIN.png'); 
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    min-height: 100vh; 
     
 }
 
@@ -92,7 +92,7 @@
     
     display: block;
     margin-top: 15px;
-    background-color: #f44336; /* Red for contrast */
+    background-color: #f44336;
     color: white;
     text-decoration: none;
     padding: 10px 15px;

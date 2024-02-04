@@ -10,7 +10,6 @@ const ProfilePage = ({ userInfo, getUserInfo, setUserInfo }) => {
   const [isModified, setIsModified] = useState(false);
   const { authState } = useAuth();
   const { userId } = useAuth();
-  // Fetch user data
   console.log(authState.userId);
   useEffect(() => {
     const fetchUserData = async () => {
@@ -26,7 +25,6 @@ const ProfilePage = ({ userInfo, getUserInfo, setUserInfo }) => {
           setUserInfo(response.data);
         }
       } catch (error) {
-        // Handle errors
         console.error('Error fetching user data:', error);
       }
     };

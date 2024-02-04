@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AppRoutes from './routes/AppRoutes'; // Adjust the import path based on your project structure
+import AppRoutes from './routes/AppRoutes'; 
 
 const App = () => {
   const [posts, setPosts] = useState([]);

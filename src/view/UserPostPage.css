@@ -1,64 +1,62 @@
 .userpost-page-background {
-  background-image: url('../../src/Images/BACKGROUND_TOOLS.png'); /* Adjust the path as necessary */
-  background-size: cover; /* Cover the entire container */
-  background-position: center; /* Center the image in the container */
-  background-repeat: repeat;/*  Do not repeat the image */
-  min-height: 100vh; /* Ensure it covers the full viewport height */
-
-}
-
-.user-posts-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    box-shadow: 0 16px 16px rgba(0, 0, 0, 0.3);
-
-    background-color: rgba(0, 0, 0, 0.4);
-
+    background-image: url('../../src/Images/BACKGROUND_TOOLS.png');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: repeat;
+    min-height: 100vh;
+  
   }
   
-  .post-item {
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
+  .user-posts-container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      box-shadow: 0 16px 16px rgba(0, 0, 0, 0.3);
+  
+      background-color: rgba(0, 50, 0, 0.4);
+  
+    }
     
-    box-shadow: 0 16px 16px rgba(0, 0, 0, 0.3);
-  }
-  
-.user-posts-container h1 {
-  text-align: left;
-  font-size: 40px;
-  
-}
-
-  .post-item h2 {
-    margin-top: 0;
-    color:rgba(0, 0, 0, 0.8);
+    .post-item {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      
+      box-shadow: 0 16px 16px rgba(0, 0, 0, 0.3);
+    }
+    
+  .user-posts-container h1 {
+    text-align: left;
+    font-size: 40px;
     
   }
   
-  .actions {
-    margin-top: 20px;
-  }
-  
-  .edit-btn, .delete-btn {
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-right: 10px;
-  }
-  
-  .edit-btn {
-    background-color: #4CAF50; /* Green */
-    color: white;
-  }
-  
-  .delete-btn {
-    background-color: #f44336; /* Red */
-    color: white;
-  }
-  
-
+    .post-item h2 {
+      margin-top: 0;
+      color:rgba(0, 0, 0, 0.8);
+      
+    }
+    
+    .actions {
+      margin-top: 20px;
+    }
+    
+    .edit-btn, .delete-btn {
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    
+    .edit-btn {
+      background-color: #4CAF50; /* Green */
+      color: white;
+    }
+    
+    .delete-btn {
+      background-color: #f44336; /* Red */
+      color: white;
+    }
   

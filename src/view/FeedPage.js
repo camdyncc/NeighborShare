@@ -33,7 +33,6 @@ const FeedPage = () => {
       await axios.post(`http://localhost:5000/fulfill-post/${currentPostId}`, { userId: authState.userId, rating });
       setIsRatingModalOpen(false);
       alert('Request fulfilled successfully!');
-      // Optionally, refresh or update the list of posts here
     } catch (error) {
       console.error('Failed to fulfill request:', error);
       alert('Failed to fulfill request.');
@@ -41,7 +40,6 @@ const FeedPage = () => {
   };
 
   const handleLogout = () => {
-    // Implement logout functionality as needed
     console.log('Logging out...');
     navigate('/');
   };
