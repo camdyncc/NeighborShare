@@ -5,7 +5,7 @@
   margin: 80px auto;
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 64px 64px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 64px 64px rgba(0, 0, 0, 0.9);
   color: #333;
   text-align: center;
   outline: 2px solid #636363;
@@ -17,7 +17,7 @@
 }
   
   .login-page-background {
-    background-image: url('../../src/Images/BACKGROUND\ LOGIN.png'); /* Adjust the path as necessary */
+    background-image: url('../../src/Images/BACKGROUND_LOGIN.png'); /* Adjust the path as necessary */
     background-size: cover; /* Cover the entire container */
     background-position: center; /* Center the image in the container */
     background-repeat: no-repeat; /* Do not repeat the image */
@@ -25,7 +25,6 @@
     
 
 }
-
 
 
 
@@ -43,7 +42,7 @@
   }
   
   .input-container {
-    
+  
     margin-bottom: 20px;
   }
   
@@ -53,6 +52,8 @@
     font-size: 14px;
     font-weight: 600;
     color: #555;
+
+    text-align: left;
   }
   
   .input-container input {
