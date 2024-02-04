@@ -6,10 +6,32 @@ import './FeedPage.css';
 
 const FeedPage = () => {
   const [posts, setPosts] = useState([]);
+  const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
+  const [currentPostId, setCurrentPostId] = useState('');
+  const [rating, setRating] = useState(5);
+  //const [inviteUsername, setInviteUsername] = useState(''); // State for the username input
   const { authState } = useAuth();
   const navigate = useNavigate();
   const auth = useAuth();
 
+  const showRatingModal = (postId) => {
+    setCurrentPostId(postId);
+    setIsRatingModalOpen(true);
+  };
+
+  const handleFulfillment = async () => {
+    try {
+      await axios.post(`http://localhost:5000/fulfill-post/${currentPostId}`, {
+        userId: authState.userId,
+        rating,
+      });
+      setIsRatingModalOpen(false);
+      alert('Request fulfilled successfully!');
+    } catch (error) {
+      console.error('Failed to fulfill request:', error);
+      alert('Failed to fulfill request.');
+    }
+  };
   useEffect(() => {
         const fetchPosts = async () => {
           if (!authState.userId) return; 
@@ -72,6 +94,7 @@ const FeedPage = () => {
                 <span>Type: {post.postType}</span>
                 <span>Needed: {post.serviceOrTool}</span>
                 <span>Needed by: {new Date(post.neededBy).toLocaleDateString()}</span>
+                <button onClick={() => showRatingModal(post._id)}>Fulfill Request</button>
               </div>
             </article>
           ))
@@ -79,6 +102,20 @@ const FeedPage = () => {
           <p className="no-posts">No posts for your neighborhood, be the first!</p>
         )}
       </main>
+        {isRatingModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setIsRatingModalOpen(false)}>&times;</span>
+            <h2>Rate Fulfillment</h2>
+            <select value={rating} onChange={(e) => setRating(e.target.value)}>
+              {[1, 2, 3, 4, 5].map(num => (
+                <option key={num} value={num}>{num}</option>
+              ))}
+            </select>
+            <button onClick={handleFulfillment}>Submit Rating</button>
+          </div>
+        </div>
+        )}
       <footer className="footer">
         <p>&copy; 2024 NeighborShare. All rights reserved.</p>
       </footer>
