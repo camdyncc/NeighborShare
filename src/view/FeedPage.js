@@ -5,7 +5,6 @@ import { useAuth } from '../components/AuthContext';
 import { AppBar, Toolbar, Typography, Button, Card, CardContent, CardActions, Modal, Box, Grid, Container, CssBaseline } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-// Theme customization
 const defaultTheme = createTheme({
   palette: {
     primary: {

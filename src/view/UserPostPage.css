@@ -1,9 +1,9 @@
 .userpost-page-background {
-  background-image: url('../../src/Images/BACKGROUND_LOGIN.png'); /* Adjust the path as necessary */
-  background-size: cover; /* Cover the entire container */
-  background-position: center; /* Center the image in the container */
-  background-repeat: repeat;/*  Do not repeat the image */
-  min-height: 100vh; /* Ensure it covers the full viewport height */
+  background-image: url('../../src/Images/BACKGROUND_LOGIN.png');
+  background-size: cover;
+  background-position: center; 
+  background-repeat: repeat;
+  min-height: 100vh;
 
 }
 
@@ -51,12 +51,12 @@
   }
   
   .edit-btn {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
     color: white;
   }
   
   .delete-btn {
-    background-color: #f44336; /* Red */
+    background-color: #f44336; 
     color: white;
   }
   

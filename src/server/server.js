@@ -16,7 +16,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// Connect to MongoDB (with asynchronous handling)
+// Connect to MongoDB)
 mongoose.connect("mongodb+srv://camdyncoblentz:mongoDB060300@cluster0.th4c6ux.mongodb.net/users?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -28,7 +28,6 @@ mongoose.connect("mongodb+srv://camdyncoblentz:mongoDB060300@cluster0.th4c6ux.mo
 const User = mongoose.model('User', new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  // Change to array of nighborhoods
   neighborhood: { type: mongoose.Schema.Types.ObjectId, ref: 'Neighborhood' },
   firstName: String,
   lastName: String,
@@ -153,7 +152,6 @@ app.get('/profile/:userId', async (req, res) => {
     console.log("User id profile: " + userId);
     const user = await User.findById(userId);
     if (!user) {
-      // If the user does not exist
       return res.status(404).json({ error: 'User not found' });
     }
     res.status(200).json(user);
@@ -242,7 +240,6 @@ app.get('/user-neighborhoods/:userId', async (req, res) => {
     if (!user) {
       return res.status(404).send('User not found');
     }
-    // Assuming a user can belong to multiple neighborhoods, or adjust as necessary
     res.json(user.neighborhood);
   } catch (error) {
     console.error('Failed to get neighborhoods for user:', error);
@@ -275,7 +272,7 @@ app.post('/fulfill-post/:postId', async (req, res) => {
     
     const newRating = ((creator.rating || 0) + rating) / 2; // rating calculation
     creator.rating = newRating;
-    fulfiller.credits += 1; // Issue credit to fulfiller
+    fulfiller.credits += 1;
     creator.credits -= 1; 
 
     await fulfiller.save();
@@ -289,7 +286,4 @@ app.post('/fulfill-post/:postId', async (req, res) => {
 
 });
 
-
-
-// Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
