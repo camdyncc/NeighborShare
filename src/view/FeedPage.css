@@ -4,6 +4,15 @@ body {
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+.feed-page-background {
+  background-image: url('../../src/Images/BACKGROUND_LOGIN3.png'); /* Adjust the path as necessary */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the image in the container */
+  background-repeat: repeat;/*  Do not repeat the image */
+  min-height: 100vh; /* Ensure it covers the full viewport height */
+
+}
+
 .feed-page {
   font-family: 'Arial', sans-serif;
   color: #333;
