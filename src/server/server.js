@@ -250,6 +250,43 @@ app.get('/user-neighborhoods/:userId', async (req, res) => {
 });
 
 
+app.post('/fulfill-post/:postId', async (req, res) => {
+  const { userId, rating } = req.body; // Fulfiller's userId and rating for the post creator
+  const { postId } = req.params;
+
+  if (!rating || rating < 1 || rating > 5) {
+    return res.status(400).send('Invalid rating provided.');
+  }
+
+  try {
+    const post = await Post.findById(postId).populate('userId');
+    if (!post) {
+      return res.status(404).send('Post not found.');
+    }
+
+    const creator = await User.findById(post.userId);
+    const fulfiller = await User.findById(userId);
+
+    if (!creator || !fulfiller) {
+      return res.status(404).send('User not found.');
+    }
+
+    // Simulated rating update logic 
+    const newRating = ((creator.rating || 0) + rating) / 2; // Simplified rating calculation
+    creator.rating = newRating;
+    fulfiller.credits += 1; // Issue credit to fulfiller
+    creator.credits -= 1; // Subtract credit from creator
+
+    await fulfiller.save();
+    await creator.save();
+
+    res.send('Request fulfilled successfully, credits and rating updated.');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Failed to fulfill request.');
+  }
+});
+
 
 
 // Start server
