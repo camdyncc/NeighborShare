@@ -42,6 +42,7 @@ const UserPostsPage = () => {
   };
 
   return (
+  <div className="userpost-page-background">
     <div className="user-posts-container">
       <h1>Your Posts</h1>
       {posts.length > 0 ? (
@@ -59,6 +60,7 @@ const UserPostsPage = () => {
         <p>You have not posted anything yet.</p>
       )}
     </div>
+  </div>
   );
 };
 
