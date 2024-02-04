@@ -48,8 +48,8 @@ function LoginPage() {
         </div>
         <div className="submit-container">
           <button type="submit" className="login-button">Login</button>
+          <Link to="/create-account" className="create-account-link">Create an Account</Link>
         </div>
-        <Link to="/create-account" className="create-account-link">Create an Account</Link>
       </form>
     </div>
   </div>
