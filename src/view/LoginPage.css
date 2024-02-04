@@ -1,11 +1,11 @@
 .login-container {
   width: 100%;
-  max-width: 340px;
+  max-width: 600px;
   background-color: white;
   margin: 80px auto;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 64px 64px rgba(0, 0, 0, 0.9);
+  padding: 0px;
+  border-radius: 15px;
+  box-shadow: 0 64px 64px rgba(0, 0, 0, 0.4);
   color: #333;
   text-align: center;
   outline: 2px solid #636363;
@@ -23,6 +23,10 @@
     background-repeat: no-repeat;
     min-height: 100vh; 
     
+}
+
+.container-background {
+  background-color: white;
 }
 
 
