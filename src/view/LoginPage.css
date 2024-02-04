@@ -5,7 +5,7 @@
   margin: 80px auto;
   padding: 40px;
   border-radius: 10px;
-  box-shadow: 0 64px 64px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 64px 64px rgba(0, 0, 0, 0.9);
   color: #333;
   text-align: center;
   outline: 2px solid #636363;
@@ -43,7 +43,7 @@
   }
   
   .input-container {
-    
+  
     margin-bottom: 20px;
   }
   
@@ -53,6 +53,8 @@
     font-size: 14px;
     font-weight: 600;
     color: #555;
+
+    text-align: left;
   }
   
   .input-container input {

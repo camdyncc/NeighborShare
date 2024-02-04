@@ -57,6 +57,10 @@ const NewPost = () => {
   };
 
   return (
+  
+
+  <div className="newpost-page-background">
+    
     <div className="new-post-container">
       <h1>New Post</h1>
       <form onSubmit={handleSubmit}>
@@ -120,6 +124,7 @@ const NewPost = () => {
         </button>
       </form>
     </div>
+  </div>
   );
 };
 
