@@ -43,6 +43,9 @@ const UserPostsPage = () => {
 
   return (
   <div className="userpost-page-background">
+          <div className="back-button-container">
+        <a href="/feed" className="back-button">&#8592; Back</a>
+      </div>
     <div className="user-posts-container">
       <h1>Your Posts</h1>
       {posts.length > 0 ? (

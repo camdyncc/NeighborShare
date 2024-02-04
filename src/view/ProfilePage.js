@@ -10,6 +10,7 @@ const ProfilePage = ({ userInfo, getUserInfo, setUserInfo }) => {
   const [isModified, setIsModified] = useState(false);
   const { authState } = useAuth();
   const { userId } = useAuth();
+  // Fetch user data
   console.log(authState.userId);
   useEffect(() => {
     const fetchUserData = async () => {
@@ -25,6 +26,7 @@ const ProfilePage = ({ userInfo, getUserInfo, setUserInfo }) => {
           setUserInfo(response.data);
         }
       } catch (error) {
+        // Handle errors
         console.error('Error fetching user data:', error);
       }
     };
@@ -65,8 +67,12 @@ const ProfilePage = ({ userInfo, getUserInfo, setUserInfo }) => {
   };
 
   return (
-    <div className="profile-page">
-      <h1>Profile</h1>
+    <div className="profile-container">
+      <div className="back-button-container">
+        <a href="/feed" className="back-button">&#8592; Back</a>
+      </div>
+      <div className="profile-page">
+        <h1>Profile</h1>
       <form ref={formRef} onSubmit={handleEditSubmit}>
         <label htmlFor="firstname">First Name:</label>
         <input type="text" id="firstname" name="firstname" defaultValue={userInfo.firstName} />
@@ -78,6 +84,7 @@ const ProfilePage = ({ userInfo, getUserInfo, setUserInfo }) => {
         <input type="text" id="address" name="address" defaultValue={userInfo.address} />
         <button type="submit">Submit</button>
       </form>
+    </div>
     </div>
   );
 };

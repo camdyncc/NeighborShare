@@ -60,7 +60,9 @@ const NewPost = () => {
   
 
   <div className="newpost-page-background">
-    
+          <div className="back-button-container">
+        <a href="/feed" className="back-button">&#8592; Back</a>
+      </div>
     <div className="new-post-container">
       <h1>New Post</h1>
       <form onSubmit={handleSubmit}>
