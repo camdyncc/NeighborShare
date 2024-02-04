@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../components/AuthContext';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
 import './FeedPage.css';
+import ReactDOM from 'react-dom'
 
 const FeedPage = () => {
   const [posts, setPosts] = useState([]);
@@ -45,7 +45,6 @@ const FeedPage = () => {
     console.log('Logging out...');
     navigate('/');
   };
-
   return (
     <div className="feed-page">
       <nav className="navbar">
