@@ -1,79 +1,30 @@
-.create-account-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    margin: auto;
-    margin-top: 50px;
-  }
+.signup-container {
+  width: 100%;
+  max-width: 600px;
+  background-color: white;
+  margin: 80px auto;
+  padding: 0px;
+  border-radius: 15px;
+  box-shadow: 0 64px 64px rgba(0, 0, 0, 0.4);
+  color: #333;
+  text-align: center;
+  outline: 2px solid #636363;
+  opacity: .9;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
   
-  .create-account-container h2 {
-    color: #32CD32; /* Lime Green */
-  }
-  
-  .form-field {
-    margin-bottom: 20px;
-    width: 100%;
-  }
-  
-  .form-field label {
-    display: block;
-    margin-bottom: 8px;
-    color: #32CD32; /* Lime Green */
-  }
-  
-  .form-field input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  button {
-    background-color: #32CD32; /* Lime Green */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #28a745;
-  }
-
-.action-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 20px;
+  .signup-page-background {
+    background-image: url('../../src/Images/BACKGROUND_LOGIN2.png'); 
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    min-height: 100vh; 
+    
 }
 
-.action-buttons button {
-  flex-grow: 1; /* Allows buttons to grow and fill the space */
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px; 
-  font-weight: bold; 
-}
-
-/* Back button */
-.action-buttons button:first-child {
-  background-color: #f44336;
-  color: white;
-  margin-right: 10px;
-}
-
-/* Create Account button */
-.action-buttons button:last-child {
-  background-color: #32CD32; 
-  color: white;
+.container-background {
+  background-color: white;
 }
