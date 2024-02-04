@@ -47,7 +47,6 @@ export default function LoginPage() {
     event.preventDefault();
     try {
       await login(username, password);
-      alert('Login successful!');
       navigate('/feed');
     } catch (error) {
       alert('Login failed: Invalid username or password.');
