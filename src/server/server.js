@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-console.log(process.env.MONGODB_URI); // Verify availability of the variable
+console.log(process.env.MONGODB_URI);
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://localhost:*',
 }));
 
 app.use(express.json());
@@ -34,6 +34,7 @@ const User = mongoose.model('User', new mongoose.Schema({
   lastName: String,
   age: Number,
   address: String,
+  credits: { type: Number, default: 3 },
 }));
 
 // Post model
@@ -251,9 +252,9 @@ app.get('/user-neighborhoods/:userId', async (req, res) => {
 
 
 app.post('/fulfill-post/:postId', async (req, res) => {
-  const { userId, rating } = req.body; // Fulfiller's userId and rating for the post creator
+  console.log(" Poost id: " + req.body + " " + req.params);
+  const { userId, rating } = req.body;
   const { postId } = req.params;
-
   if (!rating || rating < 1 || rating > 5) {
     return res.status(400).send('Invalid rating provided.');
   }
@@ -271,11 +272,11 @@ app.post('/fulfill-post/:postId', async (req, res) => {
       return res.status(404).send('User not found.');
     }
 
-    // Simulated rating update logic 
-    const newRating = ((creator.rating || 0) + rating) / 2; // Simplified rating calculation
+    
+    const newRating = ((creator.rating || 0) + rating) / 2; // rating calculation
     creator.rating = newRating;
     fulfiller.credits += 1; // Issue credit to fulfiller
-    creator.credits -= 1; // Subtract credit from creator
+    creator.credits -= 1; 
 
     await fulfiller.save();
     await creator.save();
@@ -285,6 +286,7 @@ app.post('/fulfill-post/:postId', async (req, res) => {
     console.error(error);
     res.status(500).send('Failed to fulfill request.');
   }
+
 });
 
 

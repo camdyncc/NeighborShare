@@ -228,6 +228,28 @@ body {
   background: none;
   cursor: pointer;
 }
+.post-info button {
+  font-size: 1rem;
+  padding: 10px 20px; 
+  background-color: #4C956C;
+  color: #FFFFFF;
+  border: none; 
+  border-radius: 5px;
+  cursor: pointer; 
+  transition: background-color 0.2s, transform 0.2s; 
+  outline: none;
+}
+
+.post-info button:hover, .post-info button:focus {
+  background-color: #3d7856;
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+}
+
+.post-info button:active {
+  transform: translateY(1px); 
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
 
 .modal-content select,
 .modal-content button {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';  // Import Link
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../components/AuthContext';
 import './CreateNeighborhood.css';
@@ -27,7 +27,7 @@ const CreateNeighborhood = () => {
   return (
     <div className="create-neighborhood-container">
       <div className="back-button-container">
-        <Link to="/feed" className="back-button">&#8592; Back</Link> {/* Back button using Link */}
+        <Link to="/feed" className="back-button">&#8592; Back</Link> 
       </div>
       <div className="form-container">
         <h1>Create New Neighborhood</h1>
@@ -39,11 +39,10 @@ const CreateNeighborhood = () => {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Neighborhood Name" // Placeholder text
+              placeholder="Neighborhood Name"
               required
             />
           </div>
-
           <button type="submit" className="submit-button">
             Create Neighborhood
           </button>

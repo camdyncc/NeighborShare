@@ -30,7 +30,8 @@ const FeedPage = () => {
 
   const handleFulfillment = async () => {
     try {
-      await axios.post(`http://localhost:5000/fulfill-post/${currentPostId}`, { userId: authState.userId, rating });
+      console.log("Current post id: " + currentPostId);
+      //await axios.post(`http://localhost:5000/fulfill-post/${currentPostId}`);
       setIsRatingModalOpen(false);
       alert('Request fulfilled successfully!');
     } catch (error) {
@@ -65,6 +66,7 @@ const FeedPage = () => {
                 <span>Type: {post.postType}</span>
                 <span>Needed: {post.serviceOrTool}</span>
                 <span>Needed by: {new Date(post.neededBy).toLocaleDateString()}</span>
+                <span>Borrow Rating: {post.userId.credits}</span>
                 <button onClick={() => { setCurrentPostId(post._id); setIsRatingModalOpen(true); }}>Fulfill Request</button>
               </div>
             </article>
