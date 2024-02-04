@@ -76,7 +76,6 @@ const FeedPage = () => {
   };
 
   return (
-    <div className="feed-page-background">
     <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
         <AppBar position="static" color="primary">
@@ -141,7 +140,6 @@ const FeedPage = () => {
         </Box>
       
     </ThemeProvider>
-    </div>
   );
 };
 
